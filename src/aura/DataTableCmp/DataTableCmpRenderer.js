@@ -16,9 +16,9 @@
             didScroll = true;
         };
 
-        // // periodically attach the scroll event listener
-        // // so that we aren't taking action for all events
-        setInterval( function() {
+        // periodically attach the scroll event listener
+        // so that we aren't taking action for all events
+        setInterval( $A.getCallback( function() {
 
             if ( didScroll ) {
 
@@ -32,7 +32,7 @@
 
             }
 
-        }, 250 );
+        }), 500 );
 
     }
 })
