@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>DataTableCellCmp</members>
+        <members>DataTableCmp</members>
+        <members>DataTableColumnCmp</members>
+        <members>DataTableDemoApp</members>
+        <members>DataTablePageChangeEvent</members>
+        <members>DataTableSortChangeEvent</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <version>38.0</version>
+</Package>

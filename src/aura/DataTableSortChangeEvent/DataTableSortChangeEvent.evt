@@ -1,0 +1,7 @@
+<aura:event type="COMPONENT" description="Indicates request to change the sorting of the data table." access="public">
+
+    <aura:attribute name="columnLabel" type="String"/>
+    <aura:attribute name="columnName" type="String"/>
+    <aura:attribute name="sortDir" type="String"/>
+
+</aura:event>

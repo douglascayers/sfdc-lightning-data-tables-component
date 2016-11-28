@@ -1,0 +1,75 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="public">
+
+    <!-- public attributes -->
+
+    <aura:attribute name="columns"
+                    type="Aura.Component[]"
+                    required="true"
+                    description="Array of one or more DataTableColumnCmp components."/>
+
+    <aura:attribute name="rows"
+                    type="Object[]"
+                    description="The data of the rows to display. Should have JSON property for each column name value."/>
+
+    <aura:attribute name="page"
+                    type="Integer"
+                    default="1"
+                    description="For pagination, which page of records to display."/>
+
+    <aura:attribute name="pageSize"
+                    type="Integer"
+                    default="25"
+                    description="For pagination, how many records per page to display."/>
+
+    <aura:attribute name="tableClass"
+                    type="String"
+                    default="slds-table slds-table--bordered slds-table--fixed-layout"
+                    description="CSS classes to apply to table tag."/>
+
+    <aura:attribute name="tableHeaderRowClass"
+                    type="String"
+                    default="slds-text-title--caps"
+                    description="CSS classes to apply to table TR tags in THEAD section."/>
+
+    <aura:attribute name="tableBodyRowClass"
+                    type="String"
+                    default="slds-hint-parent"
+                    description="CSS classes to apply to table TR tags in TBODY section."/>
+
+    <aura:attribute name="tableBodyRowCellClass"
+                    type="String"
+                    default="slds-truncate"
+                    description="CSS classes to set on container component for row cell value content."/>
+
+    <!-- private attributes -->
+
+    <!-- events -->
+
+    <aura:registerEvent name="pageChangeEvent" type="c:DataTablePageChangeEvent"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!-- markup -->
+
+    <table class="{!v.tableClass}" role="grid">
+        <thead>
+            <tr class="{!v.tableHeaderRowClass}">
+                <aura:iteration items="{!v.columns}" var="column">
+                    {!column}
+                </aura:iteration>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.rows}" var="row">
+                <tr class="{!v.tableBodyRowClass}">
+                    <aura:iteration items="{!v.columns}" var="column">
+                        <c:DataTableCellCmp row="{!row}"
+                                            column="{!column}"
+                                            class="{!v.tableBodyRowCellClass}"/>
+                    </aura:iteration>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+
+</aura:component>

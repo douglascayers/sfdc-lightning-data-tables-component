@@ -1,0 +1,80 @@
+<aura:component access="public">
+
+    <!-- public attributes -->
+
+    <aura:attribute name="label"
+                    type="String"
+                    required="true"
+                    description="Column header text label. Example, 'Related To' for Tasks."/>
+
+    <aura:attribute name="name"
+                    type="String"
+                    required="true"
+                    description="Unique field path to retrieve data from rows. Example, 'What.Name' for Tasks."/>
+
+    <aura:attribute name="headerClass"
+                    type="String"
+                    default=""
+                    description="Any CSS classes to add to the table column header cell."/>
+
+    <aura:attribute name="sortable"
+                    type="Boolean"
+                    default="false"
+                    description="True to support user clicking column name to request data sorted by this column. Event is fired indicating clicked column and new direction."/>
+
+    <aura:attribute name="isSorted"
+                    type="Boolean"
+                    default="false"
+                    description="Indicates if this column is the currently sorted column and to render up/down arrow accordingly."/>
+
+    <aura:attribute name="sortDir"
+                    type="String"
+                    default=""
+                    description="Current sort direction. ASC or DESC."/>
+
+    <!-- private attributes -->
+
+    <!-- events -->
+
+    <aura:registerEvent name="sortChangeEvent" type="c:DataTableSortChangeEvent"/>
+
+    <!-- markup -->
+
+    <th class="{! if( v.sortable, 'slds-is-sortable', '' ) + ' ' +
+                  if( and( v.isSorted, v.sortDir == 'asc' ), 'slds-is-sorted slds-is-sorted--ascending', '' ) + ' ' +
+                  if( and( v.isSorted, v.sortDir == 'desc' ), 'slds-is-sorted slds-is-sorted--descending', '' ) + ' ' +
+                  v.headerClass }"
+        scope="col"
+        aria-sort="{! if( v.sortDir == 'asc', 'ascending', 'descending' ) }"
+        aria-label="{!v.label}">
+
+        <aura:if isTrue="{!v.sortable}">
+
+            <a href="javascript:void(0);" class="slds-th__action slds-text-link--reset" onclick="{!c.fireSortChangeEvent}">
+
+                <span class="slds-assistive-text">Sort </span>
+                <span class="slds-truncate" title="{!v.label}">{!v.label}</span>
+
+                <lightning:icon iconName="utility:arrowup"
+                                size="x-small"
+                                class="{! if( or( !v.isSorted, and( v.isSorted, v.sortDir == 'desc' ) ), 'slds-hide', '') }"
+                                alternativeText="Sorted descending"/>
+
+                <lightning:icon iconName="utility:arrowdown"
+                                size="x-small"
+                                class="{! if( or( !v.isSorted, and( v.isSorted, v.sortDir == 'asc' ) ), 'slds-hide', '') }"
+                                alternativeText="Sorted ascending"/>
+
+            </a>
+
+            <aura:set attribute="else">
+
+                <span class="slds-truncate" title="{!v.label}">{!v.label}</span>
+
+            </aura:set>
+
+        </aura:if>
+
+    </th>
+
+</aura:component>

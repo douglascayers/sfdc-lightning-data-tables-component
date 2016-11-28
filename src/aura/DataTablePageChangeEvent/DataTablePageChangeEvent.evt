@@ -1,0 +1,6 @@
+<aura:event type="COMPONENT" description="Indicates request to change the page of the data table." access="public">
+
+    <aura:attribute name="page" type="Integer"/>
+    <aura:attribute name="pageSize" type="Integer"/>
+
+</aura:event>
