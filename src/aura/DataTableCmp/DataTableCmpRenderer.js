@@ -27,12 +27,12 @@
                 // adapted from stackoverflow to detect when user has scrolled sufficiently to end of document
                 // http://stackoverflow.com/questions/4841585/alternatives-to-jquery-endless-scrolling
                 if ( window['scrollY'] >= document.body['scrollHeight'] - window['outerHeight'] - 100 ) {
-                    helper.firePageChangeEvent( component );
+                    helper.getNextPage( component );
                 }
 
             }
 
-        }), 500 );
+        }), 1000 );
 
     }
 })

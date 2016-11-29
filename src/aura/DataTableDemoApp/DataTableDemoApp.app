@@ -1,4 +1,4 @@
-<aura:application extends="force:slds">
+<aura:application extends="force:slds" controller="DataTableDemoAppController">
 
     <!-- public attributes -->
 
@@ -9,25 +9,40 @@
     <aura:handler name="pageChangeEvent" event="c:DataTablePageChangeEvent" action="{!c.handlePageChangeEvent}" phase="capture"/>
     <aura:handler name="sortChangeEvent" event="c:DataTableSortChangeEvent" action="{!c.handleSortChangeEvent}" phase="capture"/>
 
-    <aura:handler event="aura:waiting" action="{!c.onWaiting}"/>
-    <aura:handler event="aura:doneWaiting" action="{!c.onDoneWaiting}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <!-- markup -->
 
-    <lightning:spinner aura:id="spinner" variant="brand" class="slds-hide"/>
+    <lightning:spinner aura:id="spinner" variant="brand"/>
 
     <c:DataTableCmp aura:id="dataTable">
         <aura:set attribute="columns">
 
-            <c:DataTableColumnCmp label="Related To"
-                                  name="What.Name"
+            <c:DataTableColumnCmp label="Contact ID"
+                                  name="Id"
                                   sortable="true"/>
 
-            <c:DataTableColumnCmp label="Subject"
-                                  name="Subject"
-                                  sortable="false"/>
+            <c:DataTableColumnCmp label="First Name"
+                                  name="FirstName"
+                                  sortable="true"/>
+
+            <c:DataTableColumnCmp label="Last Name"
+                                  name="LastName"
+                                  sortable="true"/>
+
+            <c:DataTableColumnCmp label="Account Name"
+                                  name="Account.Name"
+                                  sortable="true"/>
 
         </aura:set>
+
+        <!-- optional -->
+
+        <aura:set attribute="pageNumber" value="1"/>
+        <aura:set attribute="pageSize" value="25"/>
+        <aura:set attribute="sortColumnName" value="LastName"/>
+        <aura:set attribute="sortDirection" value="desc"/>
+
     </c:DataTableCmp>
 
 </aura:application>

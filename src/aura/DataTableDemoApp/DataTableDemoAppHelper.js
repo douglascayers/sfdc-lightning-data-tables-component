@@ -43,6 +43,8 @@
      */
     callAction : function( component, actionName, params, successCallback, failureCallback ) {
 
+        this.showSpinner( component );
+
         var action = component.get( actionName );
 
         if ( params ) {
@@ -50,6 +52,9 @@
         }
 
         action.setCallback( this, function( response ) {
+
+            this.hideSpinner( component );
+
             if ( component.isValid() && response.getState() === 'SUCCESS' ) {
 
                 if ( successCallback ) {

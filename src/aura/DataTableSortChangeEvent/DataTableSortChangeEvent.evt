@@ -1,7 +1,15 @@
 <aura:event type="COMPONENT" description="Indicates request to change the sorting of the data table." access="public">
 
-    <aura:attribute name="columnLabel" type="String"/>
-    <aura:attribute name="columnName" type="String"/>
-    <aura:attribute name="sortDir" type="String"/>
+    <aura:attribute name="columnLabel"
+                    type="String"
+                    description="Column header text label. Example, 'Related To' for Tasks."/>
+
+    <aura:attribute name="columnName"
+                    type="String"
+                    description="Unique field path to retrieve data from rows. Example, 'What.Name' for Tasks."/>
+
+    <aura:attribute name="sortDirection"
+                    type="String"
+                    description="Either 'asc' or 'desc' to indicate sort direction."/>
 
 </aura:event>

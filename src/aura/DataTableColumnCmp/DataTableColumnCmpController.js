@@ -5,18 +5,18 @@
 
         if ( sortable == true ) {
 
-               var sortDir = component.get( 'v.sortDir' );
+            var sortDirection = component.get( 'v.sortDirection' );
 
-            if ( sortDir === 'asc' ) {
-                sortDir = 'desc';
+            if ( sortDirection === 'asc' ) {
+                sortDirection = 'desc';
             } else {
-                sortDir = 'asc';
+                sortDirection = 'asc';
             }
 
             component.getEvent( 'sortChangeEvent' ).setParams({
                 'columnLabel' : component.get( 'v.label' ),
                 'columnName' : component.get( 'v.name' ),
-                'sortDir' : sortDir
+                'sortDirection' : sortDirection
             }).fire();
 
         }

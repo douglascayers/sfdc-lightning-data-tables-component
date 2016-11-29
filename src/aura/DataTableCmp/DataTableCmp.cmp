@@ -11,7 +11,9 @@
                     type="Object[]"
                     description="The data of the rows to display. Should have JSON property for each column name value."/>
 
-    <aura:attribute name="page"
+    <!-- pagination attributes -->
+
+    <aura:attribute name="pageNumber"
                     type="Integer"
                     default="1"
                     description="For pagination, which page of records to display."/>
@@ -20,6 +22,16 @@
                     type="Integer"
                     default="25"
                     description="For pagination, how many records per page to display."/>
+
+    <aura:attribute name="sortColumnName"
+                    type="String"
+                    description="For sorting, last known requested sort preference. A value that matches the name attribute of a DataTableColumnCmp."/>
+
+    <aura:attribute name="sortDirection"
+                    type="String"
+                    description="For sorting, last known requested sort preference. Value must be 'asc' or 'desc'."/>
+
+    <!-- style attributes -->
 
     <aura:attribute name="tableClass"
                     type="String"

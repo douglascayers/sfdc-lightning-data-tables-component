@@ -14,6 +14,28 @@
             columns[i].addHandler( 'sortChangeEvent', component, 'c.handleSortChangeEvent' );
         }
 
+        // default sort column if not specified yet
+        if ( columns.length > 0 ) {
+
+            var sortColumnName = component.get( 'v.sortColumnName' );
+            var sortDirection = component.get( 'v.sortDirection' );
+
+            if ( $A.util.isUndefinedOrNull( sortColumnName ) ) {
+                sortColumnName = columns[0].get( 'v.name' );
+            }
+
+            if ( $A.util.isUndefinedOrNull( sortDirection ) ) {
+                sortDirection = 'asc';
+            }
+
+            helper.syncColumnStates( component, sortColumnName, sortDirection );
+
+        }
+
+        // notify listeners to react and display initial page of data
+        // this will send v.page and v.pageSize initial attribute values
+        helper.firePageChangeEvent( component, component.get( 'v.pageNumber' ), component.get( 'v.pageSize' ) );
+
     },
 
     /**
@@ -24,27 +46,9 @@
 
         // column requested to sort data by
         var sortColumnName = event.getParam( 'columnName' );
+        var sortDirection = event.getParam( 'sortDirection' );
 
-        // for all columns update their attributes
-        // to indicate if it is the sorted column or not
-        var columns = component.get( 'v.columns' );
-        for ( var i = 0; i < columns.length; i++ ) {
-
-            var column = columns[i];
-            var columnName = column.get( 'v.name' );
-
-            if ( sortColumnName === columnName ) {
-
-                column.set( 'v.isSorted', true );
-                column.set( 'v.sortDir', event.getParam( 'sortDir' ) );
-
-            } else {
-
-                column.set( 'v.isSorted', false );
-
-            }
-
-        }
+        helper.syncColumnStates( component, sortColumnName, sortDirection );
 
     }
 })

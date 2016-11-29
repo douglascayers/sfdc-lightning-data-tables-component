@@ -27,7 +27,7 @@
                     default="false"
                     description="Indicates if this column is the currently sorted column and to render up/down arrow accordingly."/>
 
-    <aura:attribute name="sortDir"
+    <aura:attribute name="sortDirection"
                     type="String"
                     default=""
                     description="Current sort direction. ASC or DESC."/>
@@ -41,11 +41,11 @@
     <!-- markup -->
 
     <th class="{! if( v.sortable, 'slds-is-sortable', '' ) + ' ' +
-                  if( and( v.isSorted, v.sortDir == 'asc' ), 'slds-is-sorted slds-is-sorted--ascending', '' ) + ' ' +
-                  if( and( v.isSorted, v.sortDir == 'desc' ), 'slds-is-sorted slds-is-sorted--descending', '' ) + ' ' +
+                  if( and( v.isSorted, v.sortDirection == 'asc' ), 'slds-is-sorted slds-is-sorted--ascending', '' ) + ' ' +
+                  if( and( v.isSorted, v.sortDirection == 'desc' ), 'slds-is-sorted slds-is-sorted--descending', '' ) + ' ' +
                   v.headerClass }"
         scope="col"
-        aria-sort="{! if( v.sortDir == 'asc', 'ascending', 'descending' ) }"
+        aria-sort="{! if( v.sortDirection == 'asc', 'ascending', 'descending' ) }"
         aria-label="{!v.label}">
 
         <aura:if isTrue="{!v.sortable}">
@@ -57,12 +57,12 @@
 
                 <lightning:icon iconName="utility:arrowup"
                                 size="x-small"
-                                class="{! if( or( !v.isSorted, and( v.isSorted, v.sortDir == 'desc' ) ), 'slds-hide', '') }"
+                                class="{! if( or( !v.isSorted, and( v.isSorted, v.sortDirection == 'desc' ) ), 'slds-hide', '') }"
                                 alternativeText="Sorted descending"/>
 
                 <lightning:icon iconName="utility:arrowdown"
                                 size="x-small"
-                                class="{! if( or( !v.isSorted, and( v.isSorted, v.sortDir == 'asc' ) ), 'slds-hide', '') }"
+                                class="{! if( or( !v.isSorted, and( v.isSorted, v.sortDirection == 'asc' ) ), 'slds-hide', '') }"
                                 alternativeText="Sorted ascending"/>
 
             </a>
