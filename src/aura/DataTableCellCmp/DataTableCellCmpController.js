@@ -6,12 +6,23 @@
 
         var fields = column.get( 'v.name' ).split( '.' );
 
-        var value = row[fields[0]];
+        var value = null;
 
-        if ( fields.length > 1 ) {
+        if ( row.hasOwnProperty( fields[0] ) ) {
 
-            for ( var i = 1; i < fields.length; i++ ) {
-                value = value[fields[i]];
+            value = row[fields[0]];
+
+            if ( fields.length > 1 ) {
+
+                for ( var i = 1; i < fields.length; i++ ) {
+                    if ( value != null && value.hasOwnProperty( fields[i] ) ) {
+                        value = value[fields[i]];
+                    } else {
+                        value = null;
+                        break;
+                    }
+                }
+
             }
 
         }
