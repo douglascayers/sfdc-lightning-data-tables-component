@@ -4,20 +4,27 @@
 
     <aura:attribute name="row"
                     type="Object"
-                    required="true"/>
+                    required="true"
+                    description="The entire row of data, just in case your formatting logic depends on other column values."/>
 
     <aura:attribute name="column"
                     type="Aura.Component"
-                    required="true"/>
+                    required="true"
+                    description="The column name (field path) on the row of data to format and render."/>
+
+    <aura:attribute name="formatter"
+                    type="Aura.Component"/>
 
     <aura:attribute name="class"
+                    type="String"
                     default="slds-truncate"
-                    type="String"/>
+                    description="CSS class to apply to wrapping DIV of the text content. Default is 'slds-truncate'."/>
 
     <!-- private attributes -->
 
-    <aura:attribute name="cellValue" type="String" access="private"/>
-    <aura:attribute name="columnLabel" type="String" access="private"/>
+    <aura:attribute name="value"
+                    type="String"
+                    access="private"/>
 
     <!-- events -->
 
@@ -25,8 +32,6 @@
 
     <!-- markup -->
 
-    <th scope="row" data-label="{!v.columnLabel}">
-        <div class="{!v.class}" title="{!v.cellValue}">{!v.cellValue}</div>
-    </th>
+    <div class="{!v.class}" title="{!v.value}">{!v.value}</div>
 
 </aura:component>

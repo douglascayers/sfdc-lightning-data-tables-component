@@ -1,9 +1,6 @@
 ({
     doInit : function( component, event, helper ) {
 
-        var row = component.get( 'v.row' );
-        var column = component.get( 'v.column' );
-
         // the column's name might be a single property on the object
         // like 'Subject' or it might be a compound reference
         // like 'Who.Name' so we split the string into its parts
@@ -11,6 +8,9 @@
         //
         // if the row does not have the full property graph
         // then null is returned, otherwise the value at the end of the rainbow.
+
+        var row = component.get( 'v.row' );
+        var column = component.get( 'v.column' );
 
         var fields = column.get( 'v.name' ).split( '.' );
 
@@ -35,7 +35,7 @@
 
         }
 
-        component.set( 'v.cellValue', value );
+        component.set( 'v.value', value );
 
     }
 })

@@ -50,7 +50,7 @@
 
     <aura:attribute name="tableBodyRowCellClass"
                     type="String"
-                    default="slds-truncate"
+                    default=""
                     description="CSS classes to set on container component for row cell value content."/>
 
     <!-- private attributes -->
@@ -75,9 +75,9 @@
             <aura:iteration items="{!v.rows}" var="row">
                 <tr class="{!v.tableBodyRowClass}">
                     <aura:iteration items="{!v.columns}" var="column">
-                        <c:DataTableCellCmp row="{!row}"
-                                            column="{!column}"
-                                            class="{!v.tableBodyRowCellClass}"/>
+                        <td class="{!v.tableBodyRowCellClass}" scope="gridcell" data-label="{!column.label}">
+                            <c:DataTableCellCmp row="{!row}" column="{!column}"/>
+                        </td>
                     </aura:iteration>
                 </tr>
             </aura:iteration>
