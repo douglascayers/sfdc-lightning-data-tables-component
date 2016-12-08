@@ -48,11 +48,6 @@
                     default="slds-hint-parent"
                     description="CSS classes to apply to table TR tags in TBODY section."/>
 
-    <aura:attribute name="tableBodyRowCellClass"
-                    type="String"
-                    default=""
-                    description="CSS classes to set on container component for row cell value content."/>
-
     <!-- private attributes -->
 
     <!-- events -->
@@ -72,11 +67,14 @@
             </tr>
         </thead>
         <tbody>
-            <aura:iteration items="{!v.rows}" var="row">
+            <aura:iteration items="{!v.rows}" var="row" indexVar="rowIdx">
                 <tr class="{!v.tableBodyRowClass}">
-                    <aura:iteration items="{!v.columns}" var="column">
-                        <td class="{!v.tableBodyRowCellClass}" scope="gridcell" data-label="{!column.label}">
-                            <c:DataTableCellCmp row="{!row}" column="{!column}"/>
+                    <aura:iteration items="{!v.columns}" var="column" indexVar="colIdx">
+                        <td role="gridcell" data-label="{!column.label}">
+                            <c:DataTableCellCmp row="{!row}"
+                                                rowIdx="{!rowIdx}"
+                                                column="{!column}"
+                                                colIdx="{!colIdx}"/>
                         </td>
                     </aura:iteration>
                 </tr>

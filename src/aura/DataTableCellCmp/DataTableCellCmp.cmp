@@ -4,26 +4,50 @@
 
     <aura:attribute name="row"
                     type="Object"
-                    required="true"
-                    description="The entire row of data, just in case your formatting logic depends on other column values."/>
+                    description="JSON object that represents the row of data being rendered."/>
+
+    <aura:attribute name="rowIdx"
+                    type="Integer"
+                    description="The row number being rendered. Set via the aura:iteration tag in DataTableCmp."/>
 
     <aura:attribute name="column"
                     type="Aura.Component"
-                    required="true"
-                    description="The column name (field path) on the row of data to format and render."/>
+                    description="Column component definition of the data being rendered."/>
 
-    <aura:attribute name="formatter"
-                    type="Aura.Component"/>
+    <aura:attribute name="colIdx"
+                    type="Integer"
+                    description="The column number being rendered, zero based. Set via the aura:iteration tag in DataTableCmp."/>
 
     <aura:attribute name="class"
                     type="String"
-                    default="slds-truncate"
-                    description="CSS class to apply to wrapping DIV of the text content. Default is 'slds-truncate'."/>
+                    default=""
+                    description="CSS class to apply to the wrapping DIV container of the table row cell content."/>
 
     <!-- private attributes -->
 
     <aura:attribute name="value"
+                    type="Object"
+                    description="The formatted value to display in this table row cell. See controller js for details."
+                    access="private"/>
+
+    <aura:attribute name="linkToRecord"
                     type="String"
+                    description="Computed URL for linking to sobject record. See controller js for details."
+                    access="private"/>
+
+    <aura:attribute name="linkToURL"
+                    type="String"
+                    description="Computed URL for linking to arbitrary URL. See controller js for details."
+                    access="private"/>
+
+    <aura:attribute name="classicLink"
+                    type="String"
+                    description="For Classic UI Theme only, the computed link URL. See controller js for details."
+                    access="private"/>
+
+    <aura:attribute name="uiTheme"
+                    type="String"
+                    description="Are we in Classic, Salesforce1, or Lightning? How we define the links and open URLs differs Classic vs. the others."
                     access="private"/>
 
     <!-- events -->
@@ -32,6 +56,34 @@
 
     <!-- markup -->
 
-    <div class="{!v.class}" title="{!v.value}">{!v.value}</div>
+    <aura:if isTrue="{!and( empty( v.linkToRecord ), empty( v.linkToURL ), empty( v.classicLink ) )}">
+
+        <div class="{!v.class}" title="{!v.value}">
+            {!v.value}
+        </div>
+
+        <aura:set attribute="else">
+
+            <aura:if isTrue="{!v.uiTheme == 'Classic'}">
+
+                <div class="{!v.class}">
+                    <ui:outputURL label="{!v.value}" title="{!v.value}" value="{!v.classicLink}" target="_blank"/>
+                </div>
+
+                <aura:set attribute="else">
+
+                    <div class="{!v.class}">
+                        <a href="javascript:void(0)" onclick="{!c.handleOnClick}" title="{!v.value}">
+                            {!v.value}
+                        </a>
+                    </div>
+
+                </aura:set>
+
+            </aura:if>
+
+        </aura:set>
+
+    </aura:if>
 
 </aura:component>

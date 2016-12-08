@@ -17,6 +17,11 @@
                     default=""
                     description="Any CSS classes to add to the table column header cell."/>
 
+    <aura:attribute name="valueClass"
+                    type="String"
+                    default=""
+                    description="CSS classes to apply to table column value cells."/>
+
     <aura:attribute name="sortable"
                     type="Boolean"
                     default="false"
@@ -31,6 +36,14 @@
                     type="String"
                     default=""
                     description="Current sort direction. ASC or DESC."/>
+
+    <aura:attribute name="linkToRecord"
+                    type="String"
+                    description="Field path on row data for this column that represents an sobject record id. Only one of linkToRecord or linkToURL should be used."/>
+
+    <aura:attribute name="linkToURL"
+                    type="String"
+                    description="Field path on row data for this column that represents an arbitrary URL. Only one of linkToRecord or linkToURL should be used."/>
 
     <!-- private attributes -->
 
