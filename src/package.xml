@@ -6,9 +6,6 @@
     </types>
     <types>
         <members>DataTableCellCmp</members>
-        <members>DataTableCellValueAsRecordLinkCmp</members>
-        <members>DataTableCellValueAsTextCmp</members>
-        <members>DataTableCellValueInt</members>
         <members>DataTableCmp</members>
         <members>DataTableColumnCmp</members>
         <members>DataTableDemoApp</members>
