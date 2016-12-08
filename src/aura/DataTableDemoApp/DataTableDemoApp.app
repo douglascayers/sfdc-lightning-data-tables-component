@@ -20,18 +20,22 @@
 
             <c:DataTableColumnCmp label="Contact ID"
                                   name="Id"
+                                  linkToRecord="Id"
                                   sortable="true"/>
 
             <c:DataTableColumnCmp label="First Name"
                                   name="FirstName"
+                                  linkToRecord="Id"
                                   sortable="true"/>
 
             <c:DataTableColumnCmp label="Last Name"
                                   name="LastName"
+                                  linkToRecord="Id"
                                   sortable="true"/>
 
             <c:DataTableColumnCmp label="Account Name"
                                   name="Account.Name"
+                                  linkToRecord="Account.Id"
                                   sortable="true"/>
 
         </aura:set>
