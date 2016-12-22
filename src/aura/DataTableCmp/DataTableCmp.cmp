@@ -50,6 +50,11 @@
 
     <!-- private attributes -->
 
+    <aura:attribute name="scrollCheckIntervalId"
+                    type="String"
+                    description="In the renderer.js, the interval id for periodically checking scroll position. Used when unrendering component to cancel interval check."
+                    access="private"/>
+
     <!-- events -->
 
     <aura:registerEvent name="pageChangeEvent" type="c:DataTablePageChangeEvent"/>
